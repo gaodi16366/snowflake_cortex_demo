@@ -1,0 +1,200 @@
+name: revenue_timeseries_auto
+tables:
+  - name: DAILY_REVENUE
+    description: This table stores daily revenue data, including the date, actual
+      revenue, cost of goods sold (COGS), and forecasted revenue for a business.__
+    base_table:
+      database: CORTEX_ANALYST_DEMO
+      schema: REVENUE_TIMESERIES
+      table: DAILY_REVENUE
+    time_dimensions:
+      - name: DATE
+        synonyms:
+          - '  '
+        description: Date of daily revenue transactions.__
+        expr: DATE
+        data_type: DATE
+        sample_values:
+          - '2023-01-01'
+          - '2023-01-02'
+          - '2023-01-03'
+          - '2023-01-04'
+          - '2023-01-05'
+    measures:
+      - name: REVENUE
+        synonyms:
+          - '  '
+        description: Daily Revenue__
+        expr: REVENUE
+        data_type: FLOAT
+        sample_values:
+          - '15488.14'
+          - '17151.89'
+          - '16027.63'
+          - '15448.83'
+          - '14236.55'
+      - name: COGS
+        synonyms:
+          - '  '
+        description: Cost of Goods Sold (COGS)__
+        expr: COGS
+        data_type: FLOAT
+        sample_values:
+          - '7615.84'
+          - '9344.93'
+          - '7690.14'
+          - '8972.82'
+          - '7659.33'
+      - name: FORECASTED_REVENUE
+        synonyms:
+          - '  '
+        description: Forecasted Revenue__
+        expr: FORECASTED_REVENUE
+        data_type: FLOAT
+        sample_values:
+          - '15491.43'
+          - '16727.86'
+          - '15594.61'
+          - '14710.08'
+          - '14225.07'
+  - name: DAILY_REVENUE_BY_PRODUCT
+    description: This table stores daily revenue data by product line, including actual
+      revenue, cost of goods sold (COGS), and forecasted revenue, providing insights
+      into the financial performance of individual products over time.__
+    base_table:
+      database: CORTEX_ANALYST_DEMO
+      schema: REVENUE_TIMESERIES
+      table: DAILY_REVENUE_BY_PRODUCT
+    dimensions:
+      - name: PRODUCT_LINE
+        synonyms:
+          - '  '
+        description: Product Line__
+        expr: PRODUCT_LINE
+        data_type: TEXT
+        sample_values:
+          - Electronics
+          - Clothing
+          - Home Appliances
+          - Toys
+          - Books
+    time_dimensions:
+      - name: DATE
+        synonyms:
+          - '  '
+        description: Date of daily revenue records.__
+        expr: DATE
+        data_type: DATE
+        sample_values:
+          - '2023-01-01'
+          - '2023-01-02'
+          - '2023-01-03'
+          - '2023-01-04'
+          - '2023-01-05'
+    measures:
+      - name: REVENUE
+        synonyms:
+          - '  '
+        description: Daily Revenue by Product__
+        expr: REVENUE
+        data_type: FLOAT
+        sample_values:
+          - '3333.22'
+          - '40.31'
+          - '7994.96'
+          - '2236.36'
+          - '1883.29'
+      - name: COGS
+        synonyms:
+          - '  '
+        description: Cost of Goods Sold (COGS)__
+        expr: COGS
+        data_type: FLOAT
+        sample_values:
+          - '2708.71'
+          - '2168.92'
+          - '2024.65'
+          - '6.24'
+          - '707.32'
+      - name: FORECASTED_REVENUE
+        synonyms:
+          - '  '
+        description: Forecasted Revenue by Product__
+        expr: FORECASTED_REVENUE
+        data_type: FLOAT
+        sample_values:
+          - '3420.39'
+          - '4885.3'
+          - '2206.83'
+          - '1062.44'
+          - '3916.47'
+  - name: DAILY_REVENUE_BY_REGION
+    description: This table stores daily revenue data by region, including actual
+      sales revenue, cost of goods sold (COGS), and forecasted revenue for each region.__
+    base_table:
+      database: CORTEX_ANALYST_DEMO
+      schema: REVENUE_TIMESERIES
+      table: DAILY_REVENUE_BY_REGION
+    dimensions:
+      - name: SALES_REGION
+        synonyms:
+          - '  '
+        description: Geographic region where sales were generated.__
+        expr: SALES_REGION
+        data_type: TEXT
+        sample_values:
+          - North America
+          - Europe
+          - Asia
+          - South America
+          - Africa
+    time_dimensions:
+      - name: DATE
+        synonyms:
+          - '  '
+        description: Date of daily revenue records by region.__
+        expr: DATE
+        data_type: DATE
+        sample_values:
+          - '2023-01-01'
+          - '2023-01-02'
+          - '2023-01-03'
+          - '2023-01-04'
+          - '2023-01-05'
+    measures:
+      - name: REVENUE
+        synonyms:
+          - '  '
+        description: Daily Revenue by Region__
+        expr: REVENUE
+        data_type: FLOAT
+        sample_values:
+          - '9456.72'
+          - '2001.17'
+          - '2377.24'
+          - '765.82'
+          - '887.19'
+      - name: COGS
+        synonyms:
+          - '  '
+        description: Cost of Goods Sold (COGS)__
+        expr: COGS
+        data_type: FLOAT
+        sample_values:
+          - '118.26'
+          - '2427.49'
+          - '73.71'
+          - '2201.47'
+          - '2509.3'
+      - name: FORECASTED_REVENUE
+        synonyms:
+          - '  '
+        description: Forecasted Revenue by Region__
+        expr: FORECASTED_REVENUE
+        data_type: FLOAT
+        sample_values:
+          - '2636.7'
+          - '1078.47'
+          - '1783.86'
+          - '9393.56'
+          - '598.84'

@@ -1,0 +1,6 @@
+For each region, what was the lowest monthly revenue and in what month did that lowest revenue occur?
+For each month, what was the lowest daily revenue and on what date did that lowest revenue occur?
+What is the lowest monthly revenue in the results?
+What are the monthly sales of domestic appliances?
+What are the monthly revenues of apparel?
+What questions can I ask about revenue?

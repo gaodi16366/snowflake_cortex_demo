@@ -1,0 +1,8 @@
+[sample_connection]
+account = ""
+user = ""
+authenticator = "snowflake" # or "externalbrowser" to use sso
+password = ""
+database = ""
+schema = ""
+warehouse = ""

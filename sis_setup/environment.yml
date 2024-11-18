@@ -1,0 +1,8 @@
+name: sf_env
+channels:
+# don't delete indents, snowflake can't recognize the hierarchy with indents
+# yamllint disable-line rule:indentation
+- snowflake
+dependencies:
+# yamllint disable-line rule:indentation
+- streamlit=1.35.0
