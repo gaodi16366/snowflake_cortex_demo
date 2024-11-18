@@ -4,3 +4,5 @@ What is the lowest monthly revenue in the results?
 What are the monthly sales of domestic appliances?
 What are the monthly revenues of apparel?
 What questions can I ask about revenue?
+Which nation id own most customers?
+Which nation has the key 9?

@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 import snowflake.connector
 import streamlit as st
+from streamlit_option_menu import option_menu
 
 import settings
 
@@ -15,7 +16,7 @@ STAGE = "RAW_DATA"
 # FILE = "revenue_timeseries_search_nosample.yaml"
 # FILE = "revenue_timeseries_plus.yaml"
 # FILE = "revenue_timeseries_noqueries.yaml"
-FILE = "revenue_timeseries_auto.yaml"
+FILE_TEMPLATRE = "revenue_timeseries_{}.yaml"
 WAREHOUSE = "cortex_analyst_wh"
 
 # replace values below with your Snowflake connection information
@@ -39,11 +40,20 @@ if "CONN" not in st.session_state or st.session_state.CONN is None:
     )
 
 
+def on_change(key: str) -> None:
+    selection = st.session_state[key]
+    if selection == "sharing":
+        model_file = "sharing_tables.yaml"
+    else:
+        model_file = FILE_TEMPLATRE.format(selection)
+    st.session_state.model_file = model_file
+
+
 def send_message(prompt: str) -> Dict[str, Any]:
     """Calls the REST API and returns the response."""
     request_body = {
         "messages": [{"role": "user", "content": [{"type": "text", "text": prompt}]}],
-        "semantic_model_file": f"@{DATABASE}.{SCHEMA}.{STAGE}/{FILE}",
+        "semantic_model_file": f"@{DATABASE}.{SCHEMA}.{STAGE}/{st.session_state.model_file}",
     }
     # url = f"https://{st.session_state.CONN.host}/api/v2/cortex/analyst/message"
     url = f"https://{SNOWFLAKE_HOST}/api/v2/cortex/analyst/message"
@@ -122,7 +132,22 @@ def display_content(
 
 
 st.title("Cortex Analyst")
-st.markdown(f"Semantic Model: `{FILE}`")
+# st.markdown("Select a semantic model file to use:")
+selected = option_menu("Select a semantic model file to use:",
+    options=["default", "nosample", "search", "plus", "noqueries", "auto", "sharing"],
+    menu_icon="cast", default_index=2, orientation="horizontal",
+    styles={
+        "container": {"padding": "0!important", "background-color": "#ffffaa"},
+        "icon": {"color": "#ff0000", "font-size": "10px"},
+        "nav-link": {"font-size": "10px", "text-align": "left", "margin": "0px", "--hover-color": "#fcf"},
+        "nav-link-selected": {"background-color": "#ffaaff"},
+    },
+    on_change=on_change, key="model"
+)
+
+if "model_file" not in st.session_state:
+    st.session_state.model_file = ""
+st.markdown(f"Semantic Model: `{st.session_state.model_file}`")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []

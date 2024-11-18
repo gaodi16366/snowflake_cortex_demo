@@ -7,7 +7,7 @@ from snowflake.snowpark.context import get_active_session
 DATABASE = "CORTEX_ANALYST_DEMO"
 SCHEMA = "REVENUE_TIMESERIES"
 STAGE = "RAW_DATA"
-FILE = "revenue_timeseries.yaml"
+FILE = "revenue_timeseries_default.yaml"
 
 def send_message(prompt: str) -> dict:
     """Calls the REST API and returns the response."""
